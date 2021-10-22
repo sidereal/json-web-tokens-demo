@@ -1,4 +1,4 @@
 node_modules/
 .DS_Store
-jwt-example.code-workspace
+jwt-api.code-workspace
 .env

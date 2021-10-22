@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./server.js",
-    "start:dev": "nodemon --inspect=9000 ./server.js",
-    "start:debug": "SET DEBUG=blog-api:* & npm run start:dev"
+    "start:dev": "nodemon --inspect=9001 ./server.js",
+    "start:debug": "SET DEBUG=jwt-api:* & npm run start:dev"
   },
   "keywords": [],
   "author": "",

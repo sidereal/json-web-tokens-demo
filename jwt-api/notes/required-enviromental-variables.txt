@@ -1,0 +1,4 @@
+JWT_API_MONGO=mongodb://127.0.0.1/jwt-api
+JWT_API_PORT=4001
+JWT_API_JWT_SECRET_AUTH= your authorisation token secret here
+JWT_API_JWT_SECRET_REFRESH= your refresh token secret here
