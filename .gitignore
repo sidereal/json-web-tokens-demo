@@ -1,0 +1,4 @@
+node_modules/
+.DS_Store
+jwt-example.code-workspace
+.env
