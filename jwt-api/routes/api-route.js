@@ -1,5 +1,7 @@
 const express = require('express');
+const { login, logout } = require('../controllers/login-controller');
 const router = express.Router();
+
 
 // const { refreshTokens } = require('../helpers/refreshToken-helper')
 // const { authoriseAll } = require('../helpers/jwt-helper')
@@ -15,10 +17,11 @@ const router = express.Router();
 // router.get('/security', authoriseAll(), (req, res) => {
 //     res.send({ message: 'secure route!' })
 // })
-
+login
 
 // router.post('/logout', (req, res) => { res.send({ message: 'logout TBD' }) })
-router.post('/logout', (req, res) => { res.clearCookie('myRefreshToken', { httpOnly: true, path: '/api/refreshtoken', sameSite: 'Lax' }); res.send({ ok: true, message: 'logged out' }) })
+router.post('/login', login)
+router.post('/logout', logout)
 router.get('/', (req, res) => { res.send({ ok: true, 'message': 'message from /api' }) });
 
 

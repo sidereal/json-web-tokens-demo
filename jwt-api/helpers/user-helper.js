@@ -1,6 +1,6 @@
 // const jwt = require('jsonwebtoken');
 
-const userRepo = require('../repo/user-repo')
+const userRepo = require('../database/user-repo')
 const securityHelper = require('./password-helper')
 
 const { createTokens } = require('./authorisation-helper')
