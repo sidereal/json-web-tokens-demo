@@ -7,13 +7,12 @@ const userHelper = require('../helpers/user-helper')
 module.exports.login = async (req, res, next) => {
     userHelper.authenticate(req.body)
         .then(authenticationResponse => {
-            console.log(authenticationResponse);
-            const { user, authToken, refreshToken } = authenticationResponse
-            const cookieExpiry = (14 * 24 * 60 * 60 * 1000) //2 weeks
+            
+            
+            const { authToken, refreshToken } = authenticationResponse
+            
 
             res.cookie('myRefreshToken', refreshToken, refreshTokenParameters())
-            // res.cookie('myRefreshToken', refreshToken, { httpOnly: true})
-            // res.json({ user, token: authToken })
             res.send({ ok: true, authToken })
         })
         .catch(next);

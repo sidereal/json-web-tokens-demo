@@ -23,7 +23,10 @@ module.exports.authenticate = async ({ username, password }) => {
             const { authToken, refreshToken } = createTokens(user)
 
             return {
-                user: filterUser(user), //not used
+                //we don't actually need the user here, all this information is encoded in the auth token
+                //but you could pass it back to the client from here
+                //if for some reason you don't want to decode the auth token in the client
+                user: filterUser(user), 
                 authToken,
                 refreshToken
             };
