@@ -4,10 +4,10 @@ const debug = require('debug')('jwt-api:server');
 const cookieParser = require('cookie-parser')
 const cors = require('cors');
 
-const errorHandler = require('./helpers/error-handler');
+const errorHandler = require('./middleware/error-handler');
 const express = require('express');
 
-const { logCookies, logHeaders, logUser } = require('./helpers/express-helper')
+const { logCookies, logHeaders, logUser } = require('./middleware/logging')
 
 const startExpress = () => {
 

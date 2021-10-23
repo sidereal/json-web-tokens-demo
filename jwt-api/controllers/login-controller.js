@@ -1,4 +1,4 @@
-const { refreshTokenParameters } = require('../helpers/authorisation-helper');
+const { refreshTokenParameters } = require('../helpers/token-helper');
 const userHelper = require('../helpers/user-helper')
 
 

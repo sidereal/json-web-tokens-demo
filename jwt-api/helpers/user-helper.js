@@ -1,9 +1,8 @@
-// const jwt = require('jsonwebtoken');
 
 const userRepo = require('../database/user-repo')
-const securityHelper = require('./password-helper')
+const passwordHelper = require('./password-helper')
 
-const { createTokens } = require('./authorisation-helper')
+const { createTokens } = require('./token-helper')
 
 const filterUser = (user) => {
     // const { _id, roles, username } = user
@@ -17,13 +16,13 @@ module.exports.authenticate = async ({ username, password }) => {
     const user = await userRepo.getUserByUsername(username.toLowerCase())
 
     if (user) {
-        const isPasswordValid = await securityHelper.checkPassword(password, user.password);
+        const isPasswordValid = await passwordHelper.checkPassword(password, user.password);
         if (isPasswordValid) {
 
             const { authToken, refreshToken } = createTokens(user)
 
             return {
-                //we don't actually need the user here, all this information is encoded in the auth token
+                //we don't actually need the user here; all the information is encoded in the auth token
                 //but you could pass it back to the client from here
                 //if for some reason you don't want to decode the auth token in the client
                 user: filterUser(user), 

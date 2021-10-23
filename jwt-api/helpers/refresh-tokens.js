@@ -1,5 +1,5 @@
 const { verify } = require('jsonwebtoken');
-const { createTokens, refreshTokenParameters } = require('./authorisation-helper');
+const { createTokens, refreshTokenParameters } = require('./token-helper');
 
 //Return a new authorisation token & refresh token if we have a valid refresh token cookie attached to the request
 const refreshTokens = async (req, res) => {

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { authoriseRoles, authoriseAll } = require('../helpers/authorisation-helper')
+const { authoriseRoles, authoriseAll } = require('../middleware/authorisation')
 
 
 router.get('/', (req, res) => { res.send({ ok: true, 'message': 'message from /api/demo' }) });
