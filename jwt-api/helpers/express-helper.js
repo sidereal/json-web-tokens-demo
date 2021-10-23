@@ -1,14 +1,18 @@
+const debug = require('debug')('jwt-api:middleware');
+
 module.exports.logUser = (req, res, next) => {
-    console.log('USER', req.user);
+    req.user ? debug('USER', req.user) : debug('NO USER')
+    // debug('USER', req.user);
     next()
 }
 
 module.exports.logCookies = (req, res, next) => {
-    req.cookies ? console.log('COOKIES', req.cookies) : console.log('NO COOKIES')
+    
+    Object.keys(req.cookies).length === 0 ? debug('NO COOKIES') : debug('COOKIES', req.cookies)
     next()
 }
 
 module.exports.logHeaders = (req, res, next) => {
-    req.headers ? console.log('HEADERS', req.headers) : console.log('NO HEADERS')
+    req.headers ? debug('HEADERS', req.headers) : debug('NO HEADERS')
     next()
 }

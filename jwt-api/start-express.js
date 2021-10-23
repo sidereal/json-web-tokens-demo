@@ -7,6 +7,8 @@ const cors = require('cors');
 const errorHandler = require('./helpers/error-handler');
 const express = require('express');
 
+const { logCookies, logHeaders, logUser } = require('./helpers/express-helper')
+
 const startExpress = () => {
 
     const app = express();
@@ -25,6 +27,7 @@ const startExpress = () => {
 
     // app.use(logUser)
     // app.use(logCookies)
+    // app.use(logHeaders)
 
     app.get('/', (req, res) => { res.send({ ok: true, 'message': 'navigate to /api' }) })
 
