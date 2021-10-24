@@ -5,7 +5,7 @@ const { createTokens, refreshTokenParameters } = require('./token-helper');
 const { getUserById } = require('../database/user-repo')
 
 const returnFailure = (res) => {
-
+    //clear the refresh token cookie if our request fails
     res.clearCookie('myRefreshToken', { httpOnly: true, path: '/api/refreshtokens', sameSite: 'Lax' });
     return res.send({ ok: false, authToken: '' })
 
@@ -27,14 +27,13 @@ const refreshTokens = async (req, res) => {
         if (e.name == 'JsonWebTokenError') debug('invalid token detected')
         else debug(e);
         return returnFailure(res)
-        // return res.send({ ok: false, authToken: '' })
     }
     try {
         const user = await getUserById(payload.id)
 
         // if the userid is bad fail validation
         if (!user) {
-            debug('user not found')
+            debug(`user ${payload.id} not found`)
             return returnFailure(res)
         }
 
