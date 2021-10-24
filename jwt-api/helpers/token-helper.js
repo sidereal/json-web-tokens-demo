@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 createAuthToken = (user) => {
     //the expiry for the auth token should be set to a short period
-    return jwt.sign({ id: user._id, roles: user.roles, username: user.username, version: user.tokenVersion }, process.env.JWT_API_JWT_SECRET_AUTH, { expiresIn: '14days' });
+    return jwt.sign({ id: user._id, roles: user.roles, username: user.username, version: user.tokenVersion }, process.env.JWT_API_JWT_SECRET_AUTH, { expiresIn: '14d' });
 }
 
 createRefreshToken = (user) => {
@@ -19,7 +19,12 @@ module.exports.createTokens = (user) => {
 
 }
 
-module.exports.refreshTokenParameters = () => {
+module.exports.refreshTokenCookieParameters = () => {
     const cookieExpiry = (14 * 24 * 60 * 60 * 1000) //2 weeks
     return { httpOnly: true, path: '/api/refreshtokens', sameSite: 'Lax', maxAge: cookieExpiry }
+}
+
+module.exports.refreshTokenClearCookieParameters = () => {
+    
+    return { httpOnly: true, path: '/api/refreshtokens', sameSite: 'Lax' }
 }

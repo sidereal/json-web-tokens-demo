@@ -1,12 +1,12 @@
 const debug = require('debug')('jwt-api:refresh-tokens');
 
 const { verify } = require('jsonwebtoken');
-const { createTokens, refreshTokenParameters } = require('./token-helper');
+const { createTokens, refreshTokenCookieParameters, refreshTokenClearCookieParameters } = require('./token-helper');
 const { getUserById } = require('../database/user-repo')
 
 const returnFailure = (res) => {
     //clear the refresh token cookie if our request fails
-    res.clearCookie('myRefreshToken', { httpOnly: true, path: '/api/refreshtokens', sameSite: 'Lax' });
+    res.clearCookie('myRefreshToken', refreshTokenClearCookieParameters());
     return res.send({ ok: false, authToken: '' })
 
 }
@@ -47,7 +47,7 @@ const refreshTokens = async (req, res) => {
 
         const { authToken, refreshToken } = createTokens(user)
         debug(`refeshing tokens for ${user.username} ${user._id}`)
-        res.cookie('myRefreshToken', refreshToken, refreshTokenParameters())
+        res.cookie('myRefreshToken', refreshToken, refreshTokenCookieParameters())
         res.send({ ok: true, authToken })
     }
     catch (e) {
