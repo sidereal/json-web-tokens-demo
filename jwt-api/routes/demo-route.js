@@ -12,7 +12,7 @@ router.get('/error', async (req, res, next) => { await new Promise(resolve => se
 //This route will return OK only if the role 'notarole' exists in the authorisation token
 //or 401 (invalid token) handled by error-handler.js if the token is invalid
 //or returns 401 (unauthorised) if the token is OK but the role is missing
-router.get('/role-based-security', authoriseRoles('notarole'), (req, res) => { res.send({ ok: true, message: 'message from /api/demo/role-based-security' }) });
+router.get('/role-based-security', authoriseRoles('not-a-role'), (req, res) => { res.send({ ok: true, message: 'message from /api/demo/role-based-security' }) });
 
 //This role will return OK only if the request has a valid authorisation token attached
 //else 401 (invlaid token) handled by error-handler.js
