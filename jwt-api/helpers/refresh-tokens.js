@@ -1,5 +1,8 @@
+const debug = require('debug')('jwt-api:refresh-tokens');
+
 const { verify } = require('jsonwebtoken');
 const { createTokens, refreshTokenParameters } = require('./token-helper');
+const { getUserById } = require('../database/user-repo')
 
 //Return a new authorisation token & refresh token if we have a valid refresh token cookie attached to the request
 const refreshTokens = async (req, res) => {
@@ -11,24 +14,25 @@ const refreshTokens = async (req, res) => {
     let payload = null
 
     try {
-        payload = verify(requestRefreshToken, process.env.BLOG_API_JWT_SECRET_REFRESH)
+        payload = verify(requestRefreshToken, process.env.JWT_API_JWT_SECRET_REFRESH)
 
     } catch (e) {
-        console.log(e);
+        if (e.name =='JsonWebTokenError') debug('invalid token detected')
+        else debug(e);
         return res.send({ ok: false, authToken: '' })
     }
     try {
         const user = await getUserById(payload.id)
-        
+
         // if the userid is bad fail validation
         if (!user) return res.send({ ok: false, authToken: '' })
-        
+
         //Incrementing the tokenVersion field of a user in the database
         //allows us to invalidate the tokens of a user
         if (user.tokenVersion != payload.version) return res.send({ ok: false, authToken: '' })
 
         const { authToken, refreshToken } = createTokens(user)
-
+        debug(`refeshing tokens for ${user.username} ${user._id}`)
         res.cookie('myRefreshToken', refreshToken, refreshTokenParameters())
         res.send({ ok: true, authToken })
     }
