@@ -21,5 +21,5 @@ module.exports.createTokens = (user) => {
 
 module.exports.refreshTokenParameters = () => {
     const cookieExpiry = (14 * 24 * 60 * 60 * 1000) //2 weeks
-    return { httpOnly: true, path: '/api/refreshtoken', sameSite: 'Lax', maxAge: cookieExpiry }
+    return { httpOnly: true, path: '/api/refreshtokens', sameSite: 'Lax', maxAge: cookieExpiry }
 }

@@ -4,6 +4,13 @@ const { verify } = require('jsonwebtoken');
 const { createTokens, refreshTokenParameters } = require('./token-helper');
 const { getUserById } = require('../database/user-repo')
 
+const returnFailure = (res) => {
+
+    res.clearCookie('myRefreshToken', { httpOnly: true, path: '/api/refreshtokens', sameSite: 'Lax' });
+    return res.send({ ok: false, authToken: '' })
+
+}
+
 //Return a new authorisation token & refresh token if we have a valid refresh token cookie attached to the request
 const refreshTokens = async (req, res) => {
 
@@ -17,19 +24,27 @@ const refreshTokens = async (req, res) => {
         payload = verify(requestRefreshToken, process.env.JWT_API_JWT_SECRET_REFRESH)
 
     } catch (e) {
-        if (e.name =='JsonWebTokenError') debug('invalid token detected')
+        if (e.name == 'JsonWebTokenError') debug('invalid token detected')
         else debug(e);
-        return res.send({ ok: false, authToken: '' })
+        return returnFailure(res)
+        // return res.send({ ok: false, authToken: '' })
     }
     try {
         const user = await getUserById(payload.id)
 
         // if the userid is bad fail validation
-        if (!user) return res.send({ ok: false, authToken: '' })
+        if (!user) {
+            debug('user not found')
+            return returnFailure(res)
+        }
 
         //Incrementing the tokenVersion field of a user in the database
         //allows us to invalidate the tokens of a user
-        if (user.tokenVersion != payload.version) return res.send({ ok: false, authToken: '' })
+        if (user.tokenVersion != payload.version) {
+            debug('token version mismatch')
+            return returnFailure(res)
+        }
+
 
         const { authToken, refreshToken } = createTokens(user)
         debug(`refeshing tokens for ${user.username} ${user._id}`)
@@ -37,7 +52,7 @@ const refreshTokens = async (req, res) => {
         res.send({ ok: true, authToken })
     }
     catch (e) {
-        console.log(e);
+        debug(e);
         throw e.message
     }
 }
