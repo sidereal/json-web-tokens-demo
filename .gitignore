@@ -1,4 +1,5 @@
 node_modules/
 .DS_Store
 jwt-api.code-workspace
+jwt-client-react.code-workspace
 .env
