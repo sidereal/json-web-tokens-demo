@@ -6,12 +6,14 @@ import App from './App';
 import { Provider } from 'react-redux'
 import reduxStore from './store/store'
 
+import {AuthChecker} from './components/AuthChecker'
+
 
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={reduxStore}>
-      <App />
+      <AuthChecker />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
