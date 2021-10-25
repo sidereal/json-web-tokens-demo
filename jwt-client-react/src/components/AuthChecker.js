@@ -36,7 +36,6 @@ export const AuthChecker = () => {
                     dispatch({ type: 'REMOVE_AUTH' })
                 }
                 const token = jwt_decode(data.authToken)
-                // dispatch({ type: 'ADD_AUTH', payload: token })
                 const payload = {
                     user: (({ id, roles, username }) => ({ id, roles, username }))(token),
                     token: data.authToken
@@ -46,7 +45,7 @@ export const AuthChecker = () => {
                 setLoading(false)
 
             }).catch(e => {
-                console.log('AUTH CHECK',e);
+                // console.log('AUTH CHECK',e);
                 dispatch({ type: 'REMOVE_AUTH' })
             }).finally(
                 setLoading(false)

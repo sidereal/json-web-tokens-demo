@@ -28,7 +28,10 @@ const updateAuthToken = async (dispatch, title) => {
         credentials: 'include',
     }
 
-    if (oldToken == '' || Date.now() > oldTokenData?.exp) {
+    const now = Date.now()
+    const tokenExpiry = (oldTokenData?.exp * 1000)
+    console.log(`NOW: ${now} EXPIRY: ${tokenExpiry}`);
+    if (oldToken == '' || now > tokenExpiry) {
         let response = await fetch(url, options)
         checkResponse(response, title)
         let data = await response.json()
