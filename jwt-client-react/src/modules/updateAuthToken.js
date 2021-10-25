@@ -2,6 +2,7 @@ import jwt_decode from "jwt-decode";
 import reduxStore from '../store/store';
 
 import checkResponse from './checkResponse';
+import { api } from './constants'
 
 const updateAuthToken = async (dispatch, title) => {
     const state = reduxStore.getState();
@@ -20,7 +21,7 @@ const updateAuthToken = async (dispatch, title) => {
         }
     }
 
-    const url = 'http://localhost:4000/api/refreshtoken'
+    const url = `${api}/refreshtokens`
     const options = {
         mode: 'cors',
         method: 'POST',

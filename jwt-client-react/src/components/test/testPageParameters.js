@@ -1,7 +1,9 @@
+import {api} from '../../modules/constants'
 
 
-module.exports.cookieTest = {
-    url: 'http://localhost:4000/api/refreshtoken',
+
+export const cookieTest = {
+    url: `${api}/refreshtokens`,
     options: {
         mode: 'cors',
         method: 'POST',
@@ -9,7 +11,7 @@ module.exports.cookieTest = {
     }
 }
 
-module.exports.securityTest = {
+export const securityTest = {
     url: 'http://localhost:4000/api/security',
     options: {
         mode: 'cors',
@@ -18,8 +20,8 @@ module.exports.securityTest = {
     }
 }
 
-module.exports.errorTest = {
-    url: 'http://localhost:4000/api/errortest/custom',
+export const errorTest = {
+    url: `${api}/demo/error`,
     options: {
         mode: 'cors',
         method: 'GET'
