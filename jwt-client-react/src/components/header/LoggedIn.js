@@ -28,9 +28,10 @@ const LoggedIn = () => {
 
     return (
         <div style={container}>
-            {user.roles.includes(roles.Admin) && <Link style={{ ...marginRight }} to={'/securitytest'}>security test</Link>}
-            {user.roles.includes(roles.Admin) && <Link style={{ ...marginRight }} to={'/errortest'}>error test</Link>}
-            {user.roles.includes(roles.Admin) && <Link style={{ ...marginRight }} to={'/cookietest'}>cookie test</Link>}
+            {user.roles.includes(roles.Admin) && <Link style={{ ...marginRight }} to={'/tokendemo'}>token demo</Link>}
+            {user.roles.includes(roles.Admin) && <Link style={{ ...marginRight }} to={'/roledemo'}>role demo</Link>}
+            {user.roles.includes(roles.Admin) && <Link style={{ ...marginRight }} to={'/errordemo'}>error demo</Link>}
+            {user.roles.includes(roles.Admin) && <Link style={{ ...marginRight }} to={'/refreshdemo'}>refresh demo</Link>}
             <button onClick={(e) => handleClick(e, dispatch, history)}>log out </button>
         </div>
     )

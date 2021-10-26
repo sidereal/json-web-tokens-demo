@@ -1,11 +1,11 @@
 // import { deleteFromLocalStorage } from "./localStorage-helper"
 import checkResponse from './checkResponse';
 import jwt_decode from "jwt-decode";
-import { api } from '../modules/constants'
+import { api, login, logout } from './endpoints'
 
 export const logInUser = async (loginData, dispatch) => {
-    console.log(api);
-    const url = `${api}/login`
+    // console.log(api);
+    const url = login
     const options = {
         mode: 'cors',
         method: 'POST',
@@ -40,7 +40,7 @@ export const logInUser = async (loginData, dispatch) => {
 export const logOutUser = (dispatch, history) => {
     dispatch({ type: 'REMOVE_AUTH' })
 
-    const url = `${api}/logout`
+    const url = logout
     const options = {
         mode: 'cors',
         method: 'POST',

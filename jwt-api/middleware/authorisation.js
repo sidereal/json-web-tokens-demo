@@ -20,6 +20,7 @@ module.exports.authoriseAll = () => {
 }
 
 module.exports.authoriseRoles = (allowedRoles = []) => {
+    console.log('auth roles');
     // roles param can be a single role string (e.g. Role.User or 'User') 
     // or an array of roles (e.g. [Role.Admin, Role.User] or ['Admin', 'User'])
     if (typeof allowedRoles === 'string') {

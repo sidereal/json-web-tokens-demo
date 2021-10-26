@@ -1,9 +1,9 @@
-import {api} from '../../modules/constants'
+import { refreshtokens, errorDemo, tokenSecurityDemo, roleSecurityDemo } from '../../modules/endpoints'
 
 
 
-export const cookieTest = {
-    url: `${api}/refreshtokens`,
+export const refreshTest = {
+    url: refreshtokens,
     options: {
         mode: 'cors',
         method: 'POST',
@@ -11,17 +11,27 @@ export const cookieTest = {
     }
 }
 
-export const securityTest = {
-    url: 'http://localhost:4000/api/security',
+export const tokenBasedSecurityTest = {
+    url: tokenSecurityDemo,
     options: {
         mode: 'cors',
         method: 'GET'
-        
+
     }
 }
 
+export const roleBasedSecurityTest = {
+    url: roleSecurityDemo,
+    options: {
+        mode: 'cors',
+        method: 'GET'
+
+    }
+}
+
+
 export const errorTest = {
-    url: `${api}/demo/error`,
+    url: errorDemo,
     options: {
         mode: 'cors',
         method: 'GET'

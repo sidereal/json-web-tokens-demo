@@ -1,11 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom"
 
 import { useFetchTest } from "../../modules/useFetchTest";
 
-import checkResponse from "../../modules/checkResponse";
-
-import handleError from "../../modules/handleError";
 
 const GenericTest = ({ title, params }) => {
 

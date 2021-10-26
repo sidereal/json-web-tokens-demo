@@ -6,7 +6,7 @@ import jwt_decode from "jwt-decode";
 import { useDispatch } from 'react-redux';
 
 import checkResponse from '../modules/checkResponse';
-import { api } from '../modules/constants'
+import { refreshtokens } from '../modules/endpoints'
 
 export const AuthChecker = () => {
     const [loading, setLoading] = useState(true)
@@ -19,7 +19,7 @@ export const AuthChecker = () => {
     }, [])
 
     useEffect(() => {
-        const url = `${api}/refreshtokens`
+        const url = refreshtokens
         const options = {
             mode: 'cors',
             method: 'POST',

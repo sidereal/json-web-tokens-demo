@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 import reduxStore from '../store/store';
 
 import checkResponse from './checkResponse';
-import { api } from './constants'
+import { api } from './endpoints'
 
 const updateAuthToken = async (dispatch, title) => {
     const state = reduxStore.getState();
