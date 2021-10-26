@@ -1,12 +1,9 @@
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom"
 
-import { useFetchTest } from "../../modules/useFetchTest";
+import { useFetchTest } from "../logic/useFetchTest";
 
 
 const GenericTest = ({ title, params }) => {
-
-    const history = useHistory();
 
     useEffect(() => {
         params && console.log('params', params);

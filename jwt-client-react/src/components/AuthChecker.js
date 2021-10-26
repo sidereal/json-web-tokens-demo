@@ -5,8 +5,8 @@ import jwt_decode from "jwt-decode";
 
 import { useDispatch } from 'react-redux';
 
-import checkResponse from '../modules/checkResponse';
-import { refreshtokens } from '../modules/endpoints'
+import checkResponse from '../logic/checkResponse';
+import { refreshtokens } from '../reference/endpoints'
 
 export const AuthChecker = () => {
     const [loading, setLoading] = useState(true)

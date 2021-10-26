@@ -1,7 +1,7 @@
 // import { deleteFromLocalStorage } from "./localStorage-helper"
 import checkResponse from './checkResponse';
 import jwt_decode from "jwt-decode";
-import { api, login, logout } from './endpoints'
+import { login, logout } from '../reference/endpoints'
 
 export const logInUser = async (loginData, dispatch) => {
     // console.log(api);

@@ -1,4 +1,4 @@
-import { refreshtokens, errorDemo, tokenSecurityDemo, roleSecurityDemo } from '../../modules/endpoints'
+import { refreshtokens, errorDemo, tokenSecurityDemo, roleSecurityDemo } from './endpoints'
 
 
 

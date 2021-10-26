@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch } from "react-redux"
-import { logInUser } from "../../modules/authentication-helper"
 
-import { container, marginRight } from "../../modules/styles"
-import { useEffect } from 'react'
+import { logInUser } from "../../logic/authentication-helper"
 
+import { container, marginRight } from "../../reference/styles"
 
 
 const NotLoggedIn = () => {
@@ -13,7 +12,10 @@ const NotLoggedIn = () => {
     const dispatch = useDispatch()
     let isMounted = true
 
-    useEffect(() => { return () => isMounted = false }, [])
+    useEffect(() => {
+        // isMounted = true;
+        return () => isMounted = false
+    }, [])
 
 
     const handleSubmit = async e => {

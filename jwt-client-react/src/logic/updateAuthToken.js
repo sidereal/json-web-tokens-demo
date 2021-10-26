@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 import reduxStore from '../store/store';
 
 import checkResponse from './checkResponse';
-import { api } from './endpoints'
+import { refreshtokens } from '../reference/endpoints'
 
 const updateAuthToken = async (dispatch, title) => {
     const state = reduxStore.getState();
@@ -12,7 +12,7 @@ const updateAuthToken = async (dispatch, title) => {
     let oldTokenData = null
     oldToken && console.log('old token', oldToken);
 
-    if (oldToken != '') {
+    if (oldToken !== '') {
         try {
             oldTokenData = jwt_decode(oldToken)
             console.log('old token data', oldTokenData);
@@ -21,7 +21,7 @@ const updateAuthToken = async (dispatch, title) => {
         }
     }
 
-    const url = `${api}/refreshtokens`
+    const url = refreshtokens
     const options = {
         mode: 'cors',
         method: 'POST',
@@ -29,9 +29,9 @@ const updateAuthToken = async (dispatch, title) => {
     }
 
     const now = Date.now()
-    const tokenExpiry = (oldTokenData?.exp * 1000)
+    const tokenExpiry = (oldTokenData?.exp * 1000) || 0
     console.log(`NOW: ${now} EXPIRY: ${tokenExpiry}`);
-    if (oldToken == '' || now > tokenExpiry) {
+    if (oldToken === '' || now > tokenExpiry) {
         let response = await fetch(url, options)
         checkResponse(response, title)
         let data = await response.json()

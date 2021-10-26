@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import LoggedIn from './LoggedIn'
 import NotLoggedIn from './Login';
 
-import { container, headerContainer, blogPadding } from "../../modules/styles";
+import { container, headerContainer, blogPadding } from "../../reference/styles";
 
 
 const Header = () => {
