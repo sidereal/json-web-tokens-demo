@@ -36,7 +36,7 @@ const updateAuthToken = async (dispatch, title) => {
         checkResponse(response, title)
         let data = await response.json()
         console.log('update response', data);
-        dispatch({ type: 'UPDATE_TOKEN', payload: { token: data?.authToken } })
+        dispatch({ type: 'ADD_TOKEN', payload: { token: data?.authToken } })
         return data?.authToken
     }
     return oldToken
