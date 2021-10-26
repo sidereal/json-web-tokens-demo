@@ -20,7 +20,7 @@ router.get('/role-based-security', authoriseRoles('not-a-role'), (req, res) => {
 // VVV This one should succeed VVV
 // router.get('/role-based-security', authoriseRoles(roles.Contributor), (req, res) => { res.send({ ok: true, message: 'message from /api/demo/role-based-security' }) });
 
-//This role will return OK only if the request has a valid authorisation token attached
+//The 'token-based-security' route will return OK only if the request has a valid authorisation token attached
 //else 401 (invlaid token) handled by error-handler.js
 router.get('/token-based-security', authoriseAll(), (req, res) => { res.send({ ok: true, message: 'message from /api/demo/token-based-security' }) })
 
