@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import LoggedIn from './LoggedIn'
 import NotLoggedIn from './Login';
 
-import { container, headerContainer, blogPadding } from "../../reference/styles";
+import { container, headerContainer, padding } from "../../reference/styles";
 
 
 const Header = () => {
@@ -18,7 +18,7 @@ const Header = () => {
         : 'Welcome'
 
     return (
-        <div style={{ ...container, ...headerContainer, ...blogPadding }}>
+        <div style={{ ...container, ...headerContainer, ...padding }}>
             <Link to='/' >{text}</Link>
             {user ? <LoggedIn /> : <NotLoggedIn />}
         </div>

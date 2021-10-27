@@ -1,16 +1,11 @@
 export const container = {
     display: 'flex',
     flexDirection: 'row',
-    
-    // alignItems: 'center',
 }
 
-export const blogPadding = {
+export const padding = {
     padding: '.5rem'
 }
-
-export const paddingLeft =
-    { paddingLeft: '.5rem' }
 
 export const marginRight =
     { marginRight: '.5rem' }

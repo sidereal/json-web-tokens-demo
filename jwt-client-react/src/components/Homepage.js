@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { blogPadding, title } from "../reference/styles"
+import { padding, title } from "../reference/styles"
 
 
 
@@ -8,8 +8,8 @@ const HomePage = () => {
 
     return (
         <div>
-            <div style={{ ...blogPadding, ...title }}>Home Page </div>
-            {user?.roles && <div style={{ ...blogPadding }}>Roles: {user.roles.join(' ')}</div>}
+            <div style={{ ...padding, ...title }}>Home Page </div>
+            {user?.roles && <div style={{ ...padding }}>Roles: {user.roles.join(' ')}</div>}
         </div>
     );
 }
