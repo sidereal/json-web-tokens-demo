@@ -1,13 +1,15 @@
 const expressJwt = require('express-jwt');
 
-
+//not used 
+//global level filter
 module.exports.globalFilter = () => {
     const secret = process.env.JWT_API_JWT_SECRET_AUTH
     return expressJwt({ secret, algorithms: ['HS256'] }).unless({
         path: [
             // public routes that don't require authentication
             '/api/login',
-            '/api/logout'
+            '/api/logout',
+            '/api/refreshtokens'
         ]
     });
 }
