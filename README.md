@@ -33,12 +33,12 @@ Start the client using *npm start*. Open [http://localhost:3000](http://localhos
 ## Usage
 When the app page is first opened there should be a grey bar at the top of the browser window with a username entry box, a password entry box and a login button. The rest of the page should be empty except for the text 'home page'
 
-Log in using one of the preconfigured users and the header bar should change to display 'Logged in as ' and a log out button. The home page should now display the list of roles assigned to that user. If the user has the 'admin' role then four demo links should be available >
+Log in using one of the preconfigured users and the header bar should change to display 'Logged in as ' and a log out button. The home page should now display the list of roles assigned to that user. If the user has the 'admin' role then four demo links should be available in the header bar>
 
-    1. token demo > calls a endpoint on the API secured using a JWT
-    2. role demo > calls a endpoint on the API secured using a role assigned to the user
-    3. error demo > calls a endpoint on the API which waits 2 seconds and then returns a 500 error 
-    4. refresh demo > directly calles the API endpoint used to refresh the authorisation JWT using a refresh JWT passed as a cookie
+1. token demo > calls a endpoint on the API secured using a JWT
+2. role demo > calls a endpoint on the API secured using a role assigned to the user
+3. error demo > calls a endpoint on the API which waits 2 seconds and then returns a 500 error 
+4. refresh demo > directly calles the API endpoint used to refresh the authorisation JWT using a refresh JWT passed as a cookie
 
 When a log in is successful, two JWTs are returned. 
 
