@@ -38,7 +38,7 @@ Log in using one of the preconfigured users and the header bar should change to 
     1. token demo > calls a endpoint on the API secured using a JWT
     2. role demo > calls a endpoint on the API secured using a role assigned to the user
     3. error demo > calls a endpoint on the API which waits 2 seconds and then returns a 500 error 
-    4. refresh demo > directly calles the API endpoint used to refresh an authorisation JWT using a refresh JWT passed as a cookie
+    4. refresh demo > directly calles the API endpoint used to refresh the authorisation JWT using a refresh JWT passed as a cookie
 
 When a log in is successful, two JWTs are returned. 
 
@@ -46,7 +46,7 @@ The first is returned in the response body and is stored in Redux. It has a shor
 
 The second is returned with the response as an httpOnly cookie (called myRefreshToken). It has a longer expiry time (14 days). This cookie is passed in requests to the *api/refreshtokens* endpoint, which is used to request a new authorisation token when that token has expired.
 
-Each token contains a *version* property which corresponds to the *tokenVersion* property of the requesting user at the time the token was requested. To revoke a users tokens increment the value of the *tokenVersion* property. 
+Each token contains a *version* property which corresponds to the *tokenVersion* property of the requesting user at the time the token was requested. To revoke a users tokens increment the value of the *tokenVersion* property. This will cause the next attempt to refresh tokens to fail and log the user out.
 
 If the browser window is closed while a user is still logged in to the app, the refresh token cookie will remain. If the refresh token in the cookie has not expired by the time the app is next opened, a request will be made for a new authorisation token and the previous user will be logged back in.
 
