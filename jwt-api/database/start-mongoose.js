@@ -8,11 +8,6 @@ const startMongoose = async () => {
         debug(error);
         process.exit(0)
     }
-    // await startMongoose()
-    // var db = mongoose.connection;
-    // db.on('error', e => console.error.bind(console, e))
-    // db.on('open', () => console.log.bind(console, 'open'))
-
 }
 
 module.exports = startMongoose
