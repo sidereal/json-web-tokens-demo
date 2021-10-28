@@ -2,20 +2,21 @@
   "name": "jwt-api",
   "version": "1.0.0",
   "description": "An API secured using JSON Web Tokens",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node ./server.js",
     "start:dev": "nodemon --inspect=9001 ./server.js",
-    "start:debug": "SET DEBUG=jwt-api:* & npm run start:dev"
+    "start:debug-win": "SET DEBUG=jwt-api:* & npm run start:dev",
+    "start:debug": "DEBUG=jwt-api:* npm run start:dev"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sidereal",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
-    "debug": "~2.6.9",
+    "debug": "^4.3.2",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-jwt": "^6.1.0",
