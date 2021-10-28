@@ -12,7 +12,7 @@ Add a .env file to the root of the project containing the environment variables 
 
 After the .env file is configured run the *database/build-test.data.js* script to populate the database with test users. This should create 5 users with the usernames 'user-0' to 'user-4'. Each of these users has the password '1234'. Each has one or more of the roles found in the *database/roles.js* file assigned.
 
-Start the API using *npm run start:debug*
+Start the API using *npm run start:debug* or *npm run start:debug-win*
 
 A collection of API requests using the Thunder Client VSCode extension can be found in the file *thunder-client-collection/thunder-collection_jwt-api.json*
 
