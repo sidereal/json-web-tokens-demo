@@ -1,6 +1,8 @@
 
 const path = require("path")
-require('dotenv').config({ path: `${path.resolve(__dirname, "../")}\\.env` })
+// require('dotenv').config({ path: `${path.resolve(__dirname, "../")}\\.env` })
+
+require('dotenv').config({ path:'../.env'})
 const mongoose = require('mongoose');
 
 console.log(process.env.JWT_API_MONGO ?? 'not found');
