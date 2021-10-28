@@ -18,6 +18,7 @@ export const AuthChecker = () => {
         console.log('use effect test in AuthCheck');
     }, [])
 
+
     useEffect(() => {
         const url = refreshtokens
         const options = {
@@ -51,6 +52,7 @@ export const AuthChecker = () => {
                 setLoading(false)
             )
 
+        // eslint-disable-next-line
     }, [])
 
     if (loading) {

@@ -14,6 +14,7 @@ const NotLoggedIn = () => {
 
     useEffect(() => {
         // isMounted = true;
+        // eslint-disable-next-line
         return () => isMounted = false
     }, [])
 

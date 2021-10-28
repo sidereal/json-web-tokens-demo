@@ -45,6 +45,7 @@ export const useFetchTest = (title, params) => {
         }
 
         fetchData()
+        // eslint-disable-next-line
     }, [])
 
     return { loading, data }
