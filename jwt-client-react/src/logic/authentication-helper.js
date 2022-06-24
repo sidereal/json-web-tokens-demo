@@ -37,7 +37,7 @@ export const logInUser = async (loginData, dispatch) => {
     return data
 }
 
-export const logOutUser = (dispatch, history) => {
+export const logOutUser = (dispatch, navigate) => {
     dispatch({ type: 'REMOVE_AUTH' })
 
     const url = logout
@@ -55,5 +55,6 @@ export const logOutUser = (dispatch, history) => {
         }).catch(e => {
             dispatch({ type: 'REMOVE_AUTH' })
         })
-    history.push('/')
+    navigate('/')
+    // navigate.push('/')
 }

@@ -1,8 +1,10 @@
 
 
-const handleError =  (history, data) => {
+const handleError =  (navigate, data) => {
 
-    history.push({ pathname: `/error`, state: data })
+    navigate({ pathname: `/error`, state: data })
+    
+    // history.push({ pathname: `/error`, state: data })
 
 }
 

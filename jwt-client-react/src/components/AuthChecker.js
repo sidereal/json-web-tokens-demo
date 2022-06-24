@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Routes from './Routes';
+
+import AppRoutes from './AppRoutes';
 
 import jwt_decode from "jwt-decode";
 
@@ -60,5 +61,5 @@ export const AuthChecker = () => {
     }
 
 
-    return <Routes />
+    return <AppRoutes />
 }

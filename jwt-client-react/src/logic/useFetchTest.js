@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useDispatch } from 'react-redux';
 
 import handleError from './handleError';
@@ -9,7 +9,7 @@ import updateAuthToken from './updateAuthToken'
 
 
 export const useFetchTest = (title, params) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState()
 
@@ -40,7 +40,7 @@ export const useFetchTest = (title, params) => {
                 setLoading(false)
             } catch (e) {
                 console.log(e);
-                handleError(history, e)
+                handleError(navigate, e)
             }
         }
 
