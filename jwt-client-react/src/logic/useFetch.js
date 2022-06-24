@@ -9,11 +9,11 @@ import updateAuthToken from './updateAuthToken'
 import { selectAuthentication } from "../newStore/authenticationReducer";
 
 
-export const useFetchTest = (title, params) => {
+export const useFetch = (title, params) => {
     const oldToken = useSelector(selectAuthentication)?.token || '';
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true)
-    const [data, setData] = useState()
+    const [data, setData] = useState(null)
 
     const dispatch = useDispatch()
 
@@ -21,9 +21,9 @@ export const useFetchTest = (title, params) => {
         console.log('loading', loading);
     }, [loading])
 
-    useEffect(() => {
-        data && console.log('data', data);
-    }, [data])
+    // useEffect(() => {
+    //     data && console.log('data', data);
+    // }, [data])
 
     useEffect(() => {
 
@@ -47,8 +47,7 @@ export const useFetchTest = (title, params) => {
         }
 
         fetchData()
-        // eslint-disable-next-line
-    }, [])
+    }, [title, params])
 
     return { loading, data }
 }

@@ -1,28 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-import { useFetchTest } from "../logic/useFetchTest";
+import { useFetch } from "../logic/useFetch";
 
 
 const GenericTest = ({ title, params }) => {
+    const { loading, data } = useFetch(title, params)
 
     useEffect(() => {
         params && console.log('params', params);
     }, [params])
 
-
-    let { loading, data } = useFetchTest(title, params)
-
-    if (loading) {
-        return <div>loading...</div>
-    }
+    useEffect(() => { data && console.log(data) }, [data])
 
     return (
-        <div>
+        <>
             <div>{title}</div>
-            {data ? <div>{data.message || data.authToken}</div> : <div>no data!</div>}
-        </div>
-    );
-
+            {loading
+                ? <div>loading...</div>
+                : data ? <div>{data.message || data.authToken}</div> : <div>no data!</div>
+            }
+        </>
+    )
 }
 
 export default GenericTest
