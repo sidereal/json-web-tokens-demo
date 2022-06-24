@@ -6,10 +6,12 @@ import jwt_decode from "jwt-decode";
 
 import { useDispatch } from 'react-redux';
 
+import { addAuth, removeAuth } from '../newStore/authenticationReducer';
+
 import checkResponse from '../logic/checkResponse';
 import { refreshtokens } from '../reference/endpoints'
 
-export const AuthChecker = () => {
+const AuthChecker = () => {
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
 
@@ -35,20 +37,23 @@ export const AuthChecker = () => {
                 const data = await response.json()
                 console.log('AUTH', data);
                 if (!data?.ok) {
-                    dispatch({ type: 'REMOVE_AUTH' })
+                    dispatch(removeAuth());
+                    // dispatch({ type: 'REMOVE_AUTH' })
                 }
                 const token = jwt_decode(data.authToken)
                 const payload = {
                     user: (({ id, roles, username }) => ({ id, roles, username }))(token),
                     token: data.authToken
                 }
-                dispatch({ type: 'ADD_AUTH', payload })
+                dispatch(addAuth(payload))
+                // dispatch({ type: 'ADD_AUTH', payload })
                 console.log(token);
                 setLoading(false)
 
             }).catch(e => {
                 // console.log('AUTH CHECK',e);
-                dispatch({ type: 'REMOVE_AUTH' })
+                dispatch(removeAuth());
+                // dispatch({ type: 'REMOVE_AUTH' })
             }).finally(
                 setLoading(false)
             )
@@ -61,5 +66,7 @@ export const AuthChecker = () => {
     }
 
 
-    return <AppRoutes />
+    return (<AppRoutes/>)
 }
+
+export default AuthChecker 

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 // import { useEffect } from "react";
 
+import { selectAuthentication } from "../../newStore/authenticationReducer";
 import { container, marginRight } from "../../reference/styles";
 import roles from "../../reference/roles";
 
@@ -14,7 +15,9 @@ const handleClick = (e, dispatch, navigate) => {
 
 
 const LoggedIn = () => {
-    const user = useSelector(state => state?.user || '')
+    const user = selectAuthentication()?.user || '';
+
+    // const user = useSelector(state => state?.user || '')
     const navigate = useNavigate()
     const dispatch = useDispatch()
 

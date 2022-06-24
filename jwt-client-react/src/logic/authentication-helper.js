@@ -2,6 +2,8 @@
 import checkResponse from './checkResponse';
 import jwt_decode from "jwt-decode";
 import { login, logout } from '../reference/endpoints'
+import { addAuth, removeAuth } from '../newStore/authenticationReducer';
+
 
 export const logInUser = async (loginData, dispatch) => {
     // console.log(api);
@@ -33,12 +35,14 @@ export const logInUser = async (loginData, dispatch) => {
         token: data.authToken
     }
 
-    dispatch({ type: 'ADD_AUTH', payload })
+    dispatch(addAuth(payload))
+    // dispatch({ type: 'ADD_AUTH', payload })
     return data
 }
 
 export const logOutUser = (dispatch, navigate) => {
-    dispatch({ type: 'REMOVE_AUTH' })
+    // dispatch({ type: 'REMOVE_AUTH' })
+    dispatch(removeAuth())
 
     const url = logout
     const options = {
@@ -53,7 +57,8 @@ export const logOutUser = (dispatch, navigate) => {
             const data = await response.json()
             console.log(data);
         }).catch(e => {
-            dispatch({ type: 'REMOVE_AUTH' })
+            dispatch(removeAuth())
+            // dispatch({ type: 'REMOVE_AUTH' })
         })
     navigate('/')
     // navigate.push('/')
