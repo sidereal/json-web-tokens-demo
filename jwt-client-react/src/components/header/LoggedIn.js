@@ -15,14 +15,11 @@ const handleClick = (e, dispatch, navigate) => {
 
 
 const LoggedIn = () => {
-    const user = selectAuthentication()?.user || '';
+    const user = useSelector(selectAuthentication)?.user || ''
 
-    // const user = useSelector(state => state?.user || '')
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
-    // useEffect((() => { console.log('header rendering'); }))
-
+    
     return (
         <div style={container}>
             {user.roles.includes(roles.Admin) && <Link style={{ ...marginRight }} to={'/tokendemo'} >token demo</Link>}

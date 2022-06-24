@@ -1,15 +1,15 @@
 import jwt_decode from "jwt-decode";
-// import reduxStore from '../store/store';
+import { useDispatch, useSelector } from "react-redux"
 
 import checkResponse from './checkResponse';
 import { refreshtokens } from '../reference/endpoints'
-import { addToken, selectAuthentication } from "../newStore/authenticationReducer";
+import { addToken } from "../newStore/authenticationReducer";
 
-const updateAuthToken = async (dispatch, title) => {
+const updateAuthToken = async (dispatch, title, oldToken) => {
     // const state = reduxStore.getState();
     // let oldToken = state?.token || ''
 
-    const oldToken = selectAuthentication()?.token || '';
+    // const oldToken = useSelector(selectAuthentication)?.token || '';
 
     let oldTokenData = null
     oldToken && console.log('old token', oldToken);

@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import handleError from './handleError';
 import checkResponse from './checkResponse';
 
 import updateAuthToken from './updateAuthToken'
+import { selectAuthentication } from "../newStore/authenticationReducer";
 
 
 export const useFetchTest = (title, params) => {
+    const oldToken = useSelector(selectAuthentication)?.token || '';
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState()
@@ -29,8 +31,8 @@ export const useFetchTest = (title, params) => {
             setLoading(true)
 
             try {
-                let updatedToken = await updateAuthToken(dispatch, title)
-                
+                let updatedToken = await updateAuthToken(dispatch, title, oldToken)
+
                 params.options.headers = { 'Authorization': `Bearer ${updatedToken}` }
 
                 let response = await fetch(params.url, params.options)

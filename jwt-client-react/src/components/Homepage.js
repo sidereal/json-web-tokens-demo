@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import { padding, title } from "../reference/styles"
+import { selectAuthentication } from "../newStore/authenticationReducer";
 
 
 
 const HomePage = () => {
-    const user = useSelector(state => state?.user || '')
+    const user = useSelector(selectAuthentication)?.user
 
     return (
         <div>

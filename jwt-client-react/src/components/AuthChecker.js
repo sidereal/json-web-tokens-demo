@@ -4,8 +4,9 @@ import AppRoutes from './AppRoutes';
 
 import jwt_decode from "jwt-decode";
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { selectAuthentication } from "../newStore/authenticationReducer";
 import { addAuth, removeAuth } from '../newStore/authenticationReducer';
 
 import checkResponse from '../logic/checkResponse';
@@ -15,11 +16,9 @@ const AuthChecker = () => {
     const [loading, setLoading] = useState(true)
     const dispatch = useDispatch()
 
-
-
-    useEffect(() => {
-        console.log('use effect test in AuthCheck');
-    }, [])
+    // useEffect(() => {
+    //     console.log('use effect test in AuthCheck');
+    // }, [])
 
 
     useEffect(() => {
@@ -54,19 +53,25 @@ const AuthChecker = () => {
                 // console.log('AUTH CHECK',e);
                 dispatch(removeAuth());
                 // dispatch({ type: 'REMOVE_AUTH' })
-            }).finally(
+            }).finally(() => {
+                console.log('hello')
                 setLoading(false)
-            )
 
+            }
+            )
+        
         // eslint-disable-next-line
     }, [])
+
+    // const xxx = useSelector(selectAuthentication)
+    // console.log("STATE:",xxx)
 
     if (loading) {
         return <div>loading...</div>
     }
 
 
-    return (<AppRoutes/>)
+    return (<AppRoutes />)
 }
 
 export default AuthChecker 
